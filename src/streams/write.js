@@ -7,14 +7,12 @@ const write = async () => {
   console.log("Enter data:");
 
   const stream = fs.createWriteStream(FILE_PATH, { flags: "a" });
-  let fullData = "";
 
   process.stdin.setEncoding("utf8");
   process.stdin.on("data", (data) => {
     const save = data.trim();
     if (save === "save") process.exit(0);
-    fullData += data;
-    stream.write(fullData);
+    stream.write(data);
   });
 
   process.stdin.on("end", () => {
